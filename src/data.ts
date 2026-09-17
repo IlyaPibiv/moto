@@ -15,7 +15,8 @@ export const PRODUCTS = [
     price: 65000,
     category: "Экипировка",
     rating: 5.0,
-    image: "/images/product-1.jpg"
+    stock: 2,
+    image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 2,
@@ -23,7 +24,8 @@ export const PRODUCTS = [
     price: 12500,
     category: "Тормозная система",
     rating: 4.9,
-    image: "/images/product-2.jpg"
+    stock: 15,
+    image: "https://images.unsplash.com/photo-1600705722908-bab1e6191b79?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 3,
@@ -31,7 +33,8 @@ export const PRODUCTS = [
     price: 85000,
     category: "Подвеска",
     rating: 4.8,
-    image: "/images/product-3.jpg"
+    stock: 0,
+    image: "https://images.unsplash.com/photo-1599839619722-39751411ea63?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 4,
@@ -39,7 +42,8 @@ export const PRODUCTS = [
     price: 115000,
     category: "Выхлопная система",
     rating: 5.0,
-    image: "/images/product-4.jpg"
+    stock: 4,
+    image: "https://images.unsplash.com/photo-1558980394-4c7c9299fe96?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 5,
@@ -47,7 +51,8 @@ export const PRODUCTS = [
     price: 34900,
     category: "Шины",
     rating: 4.9,
-    image: "/images/product-5.jpg"
+    stock: 8,
+    image: "https://images.unsplash.com/photo-1590634629471-125026909405?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 6,
@@ -55,7 +60,8 @@ export const PRODUCTS = [
     price: 9500,
     category: "Экипировка",
     rating: 4.7,
-    image: "/images/product-6.jpg"
+    stock: 12,
+    image: "https://images.unsplash.com/photo-1518776852331-50e413000b20?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 7,
@@ -63,7 +69,8 @@ export const PRODUCTS = [
     price: 1200,
     category: "Двигатель",
     rating: 4.9,
-    image: "/images/product-7.jpg"
+    stock: 50,
+    image: "https://images.unsplash.com/photo-1600705722908-bab1e6191b79?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 8,
@@ -71,7 +78,8 @@ export const PRODUCTS = [
     price: 145000,
     category: "Двигатель",
     rating: 4.6,
-    image: "/images/product-8.jpg"
+    stock: 1,
+    image: "https://images.unsplash.com/photo-1558981420-87aa9dad1c89?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   }
 ];
 

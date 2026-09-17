@@ -2,6 +2,13 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, ShoppingCart, User, Star, ArrowRight, X, Plus, Minus, CheckCircle2, MapPin, Phone, Mail } from 'lucide-react';
 import { CATEGORIES, PRODUCTS, BRANDS_DATA, formatPrice } from './data';
+import { Calculator } from './Calculator';
+
+declare global {
+  interface Window {
+    Telegram?: any;
+  }
+}
 
 interface CartItem {
   id: number;
@@ -166,8 +173,24 @@ function App() {
                     <span className="text-textMuted">Итого:</span>
                     <span className="text-2xl font-bold text-white">{formatPrice(cartTotal)}</span>
                   </div>
-                  <button className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-4 rounded-xl transition-colors shadow-[0_0_20px_rgba(217,119,54,0.3)]">
-                    Оформить заказ
+                  <button 
+                    onClick={() => {
+                      if (window.Telegram && window.Telegram.WebApp) {
+                        window.Telegram.WebApp.sendData(JSON.stringify({
+                          action: "checkout",
+                          cart: cart,
+                          total: cartTotal
+                        }));
+                        window.Telegram.WebApp.close();
+                      } else {
+                        showToast("Заказ оформлен! (Тестовый режим)");
+                        setCart([]);
+                        setCartOpen(false);
+                      }
+                    }}
+                    className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-4 rounded-xl transition-colors shadow-[0_0_20px_rgba(217,119,54,0.3)] flex items-center justify-center gap-2"
+                  >
+                    Оформить заказ в Telegram
                   </button>
                 </div>
               )}
@@ -283,6 +306,13 @@ function App() {
         </div>
       </section>
 
+      {/* Calculator Section */}
+      <section className="py-12 -mt-16 relative z-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <Calculator />
+        </div>
+      </section>
+
       {/* Catalog Section */}
       <section id="catalog" className="py-24 bg-surface/30 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -342,9 +372,17 @@ function App() {
                     <h3 className="text-lg font-medium text-white mb-2 line-clamp-2 leading-snug group-hover:text-primary transition-colors">
                       {product.name}
                     </h3>
-                    <p className="text-sm text-textMuted mb-6 flex-grow">
+                    <p className="text-sm text-textMuted mb-4 flex-grow">
                       Оригинальная деталь с гарантией от производителя.
                     </p>
+                    
+                    <div className="flex items-center gap-2 mb-6">
+                      <div className={`w-2 h-2 rounded-full ${product.stock > 0 ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                      <span className="text-xs text-textMuted">
+                        {product.stock > 5 ? 'В наличии' : product.stock > 0 ? `Осталось: ${product.stock} шт.` : 'Под заказ'}
+                      </span>
+                    </div>
+
                     <div className="mt-auto flex items-end justify-between">
                       <div>
                         <span className="text-xs text-textMuted block mb-1">Цена</span>
